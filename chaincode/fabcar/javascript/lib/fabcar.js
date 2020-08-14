@@ -107,6 +107,22 @@ class FabCar extends Contract {
         console.info('============= END : Create Car ===========');
     }
 
+    async mint(ctx, id, type, owner, xattr, uri) {
+        console.info('============= START : Mint Token ===========');
+        
+        const token = {
+            id,
+            type,
+            owner,
+            approvee: '',
+            xattr,
+            uri,
+        };
+
+        await ctx.stub.putState(id, Buffer.from(JSON.stringify(token)));
+        console.info('============= END : Mint Token ===========');
+    }
+
     async queryAllCars(ctx) {
         const startKey = '';
         const endKey = '';
